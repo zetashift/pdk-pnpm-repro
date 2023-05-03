@@ -1,4 +1,4 @@
-import { javascript, typescript } from "projen";
+import { typescript } from "projen";
 import { deepMerge } from "projen/lib/util";
 
 export interface FooProjectOptions
@@ -35,34 +35,6 @@ export class FooProject extends typescript.TypeScriptAppProject {
         "vite",
         "svelte-check",
       ],
-      tsconfig: {
-        extends: javascript.TypescriptConfigExtends.fromPaths([
-          "./.svelte-kit/tsconfig.json",
-        ]),
-        include: ["**/*.ts"],
-        compilerOptions: {
-          allowJs: true,
-          noEmit: true,
-          allowSyntheticDefaultImports: true,
-          esModuleInterop: true,
-          moduleResolution: javascript.TypeScriptModuleResolution.NODE,
-          resolveJsonModule: true,
-          module: "esnext",
-          skipLibCheck: true,
-          inlineSourceMap: false,
-          sourceMap: true,
-          paths: {
-            "~/*": ["./src/*"],
-            // eslint-disable-next-line prettier/prettier
-            "$lib": ["./src/lib"],
-            "$lib/*": ["./src/lib/*"],
-          },
-          lib: ["dom", "dom.iterable", "esnext"],
-          strict: true,
-          target: "esnext",
-        },
-      },
-      gitignore: ["/.svelte-kit"],
     };
     super(
       deepMerge([
