@@ -2,7 +2,7 @@ import { javascript } from "projen";
 import { NxMonorepoProject } from "@aws-prototyping-sdk/nx-monorepo";
 import { FooProject } from "./FooProject"
 
-const project = new NxMonorepoProject({
+const monorepo = new NxMonorepoProject({
   defaultReleaseBranch: "main",
   devDeps: ["@aws-prototyping-sdk/nx-monorepo"],
   name: "foo",
@@ -19,6 +19,8 @@ new FooProject({
   name: "fooy",
   defaultReleaseBranch: "main",
   srcdir: "src",
+  parent: monorepo,
+  packageManager: javascript.NodePackageManager.PNPM,
   tailwind: true,
   outdir: "packages/fooy",
   devDeps: [
@@ -26,4 +28,4 @@ new FooProject({
   ]
 })
 
-project.synth();
+monorepo.synth();
