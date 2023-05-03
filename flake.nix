@@ -27,8 +27,6 @@
                   packages = [  
                     pkgs.nodejs
                     pkgs.nodePackages_latest.pnpm
-                    pkgs.jdk17_headless
-                    pkgs.awscli2
                   ];
 
                   # Note all these are aliases for Nx under the hood
@@ -37,7 +35,6 @@
                   scripts.fd.exec = "pnpm nx run frontend:dev"; # Run frontend dev server
 
                   enterShell = ''
-                    echo "Welcome to MIC dev shell!"
                   '';
                 }
               ];
